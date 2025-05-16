@@ -1,16 +1,10 @@
-import sys
-import os
-from pathlib import Path
 import io
 import pytest
-from unittest.mock import patch, MagicMock
 from fastapi.testclient import TestClient
 from PIL import Image
+from unittest.mock import patch, MagicMock
 import torch
 
-
-
-# Импортируем приложение напрямую
 from api.main_api import app
 
 client = TestClient(app)
@@ -25,18 +19,14 @@ def mock_image():
 
 def test_predict(mock_image):
     with patch('torch.nn.functional.softmax', return_value=torch.tensor([0.1, 0.2, 0.3, 0.4, 0.5])), \
-         patch('torch.topk', return_value=(torch.tensor([0.5, 0.4, 0.3, 0.2, 0.1]), 
-                                          torch.tensor([4, 3, 2, 1, 0]))):
-        
+         patch('torch.topk', return_value=(torch.tensor([0.5, 0.4, 0.3, 0.2, 0.1]), torch.tensor([4, 3, 2, 1, 0]))):
         response = client.post(
             "/predict",
             files={"file": ("test_image.jpg", mock_image, "image/jpeg")}
         )
-        
         assert response.status_code == 200
         data = response.json()
         assert len(data["predictions"]) == 5
-        
         for pred in data["predictions"]:
             assert "class" in pred
             assert "probability" in pred
@@ -49,3 +39,4 @@ def test_predict_invalid_file():
         files={"file": ("bad_file.txt", bad_file, "text/plain")}
     )
     assert response.status_code == 422
+    assert response.json()["detail"] == "Invalid image file"
