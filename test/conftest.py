@@ -4,8 +4,6 @@ import pytest  # Добавляем импорт pytest
 from unittest.mock import patch, MagicMock
 import torch
 
-# Добавляем корневой каталог проекта в пути Python
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Мокируем модель перед импортом приложения
 @pytest.fixture(autouse=True, scope="session")
