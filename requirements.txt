@@ -6,3 +6,4 @@ torchvision
 pytest
 pytest-mock
 httpx
+python-multipart
