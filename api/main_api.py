@@ -6,7 +6,7 @@ import torch
 import torchvision.transforms as transforms
 
 app = FastAPI()
-#
+
 # Загрузка модели (можно заменить на свою)
 model = torch.hub.load('pytorch/vision', 'resnet50', pretrained=True)
 model.eval()
