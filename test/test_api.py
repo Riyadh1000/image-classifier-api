@@ -11,7 +11,7 @@ import torch
 
 
 # Импортируем приложение напрямую
-from api.main_api import app 
+from api.main_api import app
 
 client = TestClient(app)
 

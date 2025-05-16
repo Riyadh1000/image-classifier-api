@@ -3,8 +3,6 @@ import torch
 from torchvision import models, transforms
 from PIL import Image
 import io
-
-
 #
 app = FastAPI()
 model = models.resnet50(pretrained=True)
