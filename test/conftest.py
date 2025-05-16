@@ -1,5 +1,6 @@
 import sys
 import os
+import pytest  # Добавляем импорт pytest
 from unittest.mock import patch, MagicMock
 import torch
 
