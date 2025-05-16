@@ -8,12 +8,10 @@ from fastapi.testclient import TestClient
 from PIL import Image
 import torch
 
-# Однозначно добавляем корневую директорию в sys.path
-root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir))
+
 
 # Импортируем приложение напрямую
-from api.main import app
+from api.main_api import app 
 
 client = TestClient(app)
 
