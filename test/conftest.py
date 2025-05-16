@@ -3,7 +3,7 @@ import os
 import pytest  # Добавляем импорт pytest
 from unittest.mock import patch, MagicMock
 import torch
-
+#
 
 # Мокируем модель перед импортом приложения
 @pytest.fixture(autouse=True, scope="session")
