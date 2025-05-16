@@ -4,6 +4,7 @@ from PIL import Image
 import io
 import json
 import os
+import numpy as np
 
 # Предобработка изображений для ShuffleNet
 def preprocess_image(image):
